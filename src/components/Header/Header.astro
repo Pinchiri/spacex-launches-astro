@@ -1,7 +1,10 @@
 ---
-import { OLDEST_LAUNCHES_URL } from "../../../constants/urls";
+import { OLDEST_LAUNCHES_URL } from "@/constants/urls";
 import HeaderButton from "./HeaderButton.astro";
-import { ABOUT_URL } from "../../../constants/urls";
+import { ABOUT_URL } from "@/constants/urls";
+import InfoIcon from "@/assets/icons/InfoIcon.astro";
+import RocketIcon from "@/assets/icons/RocketIcon.astro";
+import ClockIcon from "@/assets/icons/ClockIcon.astro";
 ---
 
 <header class="py-8 px-4 mx-auto max-w-xl lg:py-16 lg:px-6">
@@ -15,13 +18,20 @@ import { ABOUT_URL } from "../../../constants/urls";
   </div>
 
   <nav
-    class="flex flex-col items-center justify-between w-full text-center md:flex-row"
+    class="flex flex-col items-center justify-between w-full text-center md:flex-row text-white"
   >
-    <HeaderButton class="text-white" href="/">Latest Launches</HeaderButton>
-    <HeaderButton class="text-white" href={ABOUT_URL}>
+    <HeaderButton href="/">
+      <RocketIcon slot="before" />
+      Latest Launches
+    </HeaderButton>
+
+    <HeaderButton href={ABOUT_URL}>
+      <InfoIcon slot="before" />
       About the project
     </HeaderButton>
-    <HeaderButton class="text-white" href={OLDEST_LAUNCHES_URL}>
+
+    <HeaderButton href={OLDEST_LAUNCHES_URL}>
+      <ClockIcon slot="before" />
       Oldest Launches
     </HeaderButton>
   </nav>
