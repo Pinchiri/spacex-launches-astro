@@ -1,0 +1,28 @@
+---
+import { getLatestLaunches, getLaunchById } from "@/services/spacex.ts";
+import Layout from "@/layouts/Layout.astro";
+
+export const prerender = false;
+const { id } = Astro.params;
+
+let launch;
+if (id) {
+  launch = await getLaunchById({ id });
+}
+---
+
+<Layout title={launch?.name || `Launch #${launch?.flight_number}`}>
+  <article class="flex flex-col gap-y-4">
+    <img
+      class="w-52 h-auto"
+      src={launch?.links?.patch.small}
+      alt={launch?.name}
+    />
+    <h2 class="text-4xl text-white font-bold">
+      {launch?.name} - Launch #{launch?.flight_number}
+    </h2>
+    <p class="text-lg">
+      {launch?.details}
+    </p>
+  </article>
+</Layout>
