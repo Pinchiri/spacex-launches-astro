@@ -16,21 +16,20 @@ import ClockIcon from "@/assets/icons/ClockIcon.astro";
       All the information about SpaceX Launches
     </p>
   </div>
-
   <nav
-    class="flex flex-col items-center justify-between w-full text-center md:flex-row text-white"
+    class="flex flex-col items-center justify-center w-full text-center md:flex-row text-white"
   >
-    <HeaderButton href="/">
+    <HeaderButton url="/">
       <RocketIcon slot="before" />
       Latest Launches
     </HeaderButton>
 
-    <HeaderButton href={ABOUT_URL}>
+    <HeaderButton url={ABOUT_URL}>
       <InfoIcon slot="before" />
       About the project
     </HeaderButton>
 
-    <HeaderButton href={OLDEST_LAUNCHES_URL}>
+    <HeaderButton url={OLDEST_LAUNCHES_URL}>
       <ClockIcon slot="before" />
       Oldest Launches
     </HeaderButton>
