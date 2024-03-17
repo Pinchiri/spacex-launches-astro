@@ -1,6 +1,6 @@
 import type { Doc, APISpaceXResponse } from "@/types/api";
 
-export const getLatestLaunches = async () => {
+export const getLaunchesSorted = async (sortType: string) => {
 
 const response = await fetch("https://api.spacexdata.com/v5/launches/query", {
   method: "POST",
@@ -10,7 +10,10 @@ const response = await fetch("https://api.spacexdata.com/v5/launches/query", {
   body: JSON.stringify({
     query: {},
     options: {
-      limit: 12,
+      sort: {
+        flight_number: sortType,
+      },
+      limit: 21,
     },
   }),
 });
@@ -23,6 +26,6 @@ export const getLaunchById = async ({id}: {id: string}) => {
 
   const response = await fetch(`https://api.spacexdata.com/v5/launches/${id}`);
   const launch = (await response.json()) as Doc;
-  
+
   return launch;
   }

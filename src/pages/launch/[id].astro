@@ -1,6 +1,7 @@
 ---
-import { getLatestLaunches, getLaunchById } from "@/services/spacex.ts";
+import { getLaunchById } from "@/services/spacex.ts";
 import Layout from "@/layouts/Layout.astro";
+import { DEFAULT_PATCH_IMAGE } from "@/constants/urls";
 
 export const prerender = false;
 const { id } = Astro.params;
@@ -12,17 +13,17 @@ if (id) {
 ---
 
 <Layout title={launch?.name || `Launch #${launch?.flight_number}`}>
-  <article class="flex flex-col gap-y-4">
+  <article class="flex flex-col gap-y-4 items-center">
     <img
       class="w-52 h-auto"
-      src={launch?.links?.patch.small}
+      src={launch?.links?.patch.small || DEFAULT_PATCH_IMAGE}
       alt={launch?.name}
     />
     <h2 class="text-4xl text-white font-bold">
-      {launch?.name} - Launch #{launch?.flight_number}
+      Launch #{launch?.flight_number} - {launch?.name}
     </h2>
     <p class="text-lg">
-      {launch?.details}
+      {launch?.details || "No details available for this launch."}
     </p>
   </article>
 </Layout>
